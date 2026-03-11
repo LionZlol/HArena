@@ -757,7 +757,7 @@ const W_FIGHTERS = {
 
       ctx.restore();
 
-      setHPExtra(ball, `🔥 ${ball.torchDamage.toFixed(1)} dps`);
+      setHPExtra(ball, `🔦 ${ball.torchDamage.toFixed(1)} dps`);
     },
   },
   
