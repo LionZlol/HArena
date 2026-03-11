@@ -1,0 +1,8 @@
+const BALL_DEFINITIONS = {
+  ...W_FIGHTERS,
+  ...C_FIGHTERS,
+  ...O_FIGHTERS,
+  ...SW_FIGHTERS,
+  ...SC_FIGHTERS,
+  ...SO_FIGHTERS,
+};

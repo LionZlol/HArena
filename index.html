@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- MENU -->
+    <div id="menu" class="screen active">
+      <div>
+        <h1>H ARENA</h1>
+        <p class="subtitle">Hyperlink Studios Battle Simulator</p>
+      </div>
+      <div class="fighter-grid" id="fighter-grid"></div>
+      <p id="select-hint">Pick 2–8 fighters</p>
+      <button class="start-btn" id="start-btn">START FIGHT</button>
+    </div>
+
+    <!-- GAME -->
+    <div id="game" class="screen">
+      <div class="hp-bars" id="hp-bars"></div>
+      <canvas id="arena" width="520" height="520"></canvas>
+      <p class="credits">Created by Hyperlink Studios. Inspired by Earclacks. Go check them out on <a href="https://www.youtube.com/@Earclacks" target="_blank" class="yt-link">their YT channel.</a></p>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="screen">
+      <p class="result-title">Fight Over</p>
+      <div class="winner-name" id="winner-name">???</div>
+      <p class="winner-sub" id="winner-sub">wins the arena!</p>
+      <button class="back-btn" id="back-btn">← Back to Menu</button>
+    </div>
+
+    <script src="fighters/w-fighters.js"></script>
+    <script src="fighters/c-fighters.js"></script>
+    <script src="fighters/o-fighters.js"></script>
+    <script src="fighters/sw-fighters.js"></script>
+    <script src="fighters/sc-fighters.js"></script>
+    <script src="fighters/so-fighters.js"></script>
+    <script src="index.js"></script>
+    <script src="engine.js"></script>
+  </body>
+</html>

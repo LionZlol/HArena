@@ -1,0 +1,183 @@
+* { margin:0; padding:0; box-sizing:border-box; user-select: none; }
+
+body {
+  background: #06060e;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* ─── SCREEN SYSTEM ─── */
+.screen { display: none; flex-direction: column; align-items: center; gap: 24px; }
+.screen.active { display: flex; }
+
+/* ─── MENU ─── */
+#menu { text-align: center; }
+
+#menu h1 {
+  padding-top: 44px;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -3px;
+  background: linear-gradient(135deg, #ff3b3b 0%, #ff9500 60%, #ffdd00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+#menu .subtitle {
+  color: #555;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.fighter-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1600px;
+}
+
+.fighter-card {
+  max-width: 180px;
+  border: 2px solid #181824;
+  border-radius: 14px;
+  padding: 20px 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.18s, transform 0.18s, background 0.18s;
+  background: #0c0c18;
+  position: relative;
+}
+.fighter-card:hover { border-color: #444; transform: translateY(-3px); }
+.fighter-card.selected-team1 { border-color: #ff7700; background: #160f06; }
+
+.fighter-card.selected-team2 { border-color: #3399ff; background: #061016; }
+
+.ball-preview {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  position: relative;
+}
+.fighter-card .name  { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+.fighter-card .desc  { font-size: 11px; color: #666; font-weight: 300; line-height: 1.4; }
+.fighter-card .stats { font-size: 10px; color: #444; margin-top: 8px; font-weight: 300; }
+
+#select-hint {
+  font-size: 12px;
+  color: #444;
+  font-weight: 300;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #ff3b3b, #ff9500);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 14px 52px;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.2s;
+  opacity: 0.3;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+.start-btn.ready { opacity: 1; pointer-events: all; }
+.start-btn.ready:hover { transform: scale(1.05); }
+.start-btn.ready:active { transform: scale(0.97); }
+
+.yt-link { color: #ff7700; text-decoration: underline; }
+
+/* ─── GAME ─── */
+#game { gap: 10px; }
+
+.hp-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+  width: 520px;
+}
+.hp-bar-wrap {
+  flex: 1;
+  background: #0c0c18;
+  border-radius: 10px;
+  padding: 10px 12px 8px;
+  border: 1px solid #181824;
+  min-width: 0;
+}
+.hp-bar-wrap.team1 { border-color: #ff7700; }
+.hp-bar-wrap.team2 { border-color: #3399ff; }
+.hp-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+.hp-bar-head .fighter-name { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hp-bar-head .hp-count { font-size: 11px; color: #888; font-weight: 400; }
+.hp-track {
+  height: 7px;
+  background: #181824;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.hp-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.08s linear;
+}
+.hp-extra, .credits { font-size: 10px; color: #555; font-weight: 300; min-height: 13px; }
+
+canvas {
+  border: 2px solid #181824;
+  border-radius: 6px;
+  display: block;
+  background: #07070f;
+}
+
+/* ─── RESULT ─── */
+#result { text-align: center; }
+#result .result-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+#result .winner-name {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+#result .winner-sub {
+  font-size: 14px;
+  color: #555;
+  font-weight: 300;
+}
+
+.back-btn {
+  background: #0c0c18;
+  border: 2px solid #222;
+  border-radius: 10px;
+  color: #aaa;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 32px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.back-btn:hover { border-color: #555; color: #fff; }
