@@ -226,7 +226,7 @@ const O_FIGHTERS = {
       ball.frisbeeActive = false;
       ball.fX = 0; ball.fY = 0;
       ball.fVX = 0; ball.fVY = 0;
-      ball.fRadius = 12;
+      ball.fRadius = 16;
       ball.damage = 1;      // Starts weak
       ball.fBaseSpeed = 550; // Current power level
       ball.throwTimer = 0;
