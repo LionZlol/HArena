@@ -58,10 +58,10 @@ document.addEventListener('keydown', (e) => {
 document.getElementById("start-btn").addEventListener("click", startGame);
 document.getElementById("back-btn").addEventListener("click", showMenu);
 
-function setHPExtra(ball, text) {
+function setHPExtra(ball, text, color = ball.color) {
   const id = ball.uid;
   const el = document.getElementById(`hpext_${id}`);
-  el.style.color = ball.color;
+  el.style.color = color;
   if (el) el.textContent = text;
 }
 

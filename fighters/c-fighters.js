@@ -260,7 +260,7 @@ const C_FIGHTERS = {
     },
 
     onBallCollide(ball, other) {
-      if (other.dead || (!isFreeForAll && other.team === ball.team)) return;
+      if (ballCheck(ball, other)) return;
       const cd = ball.bodyCooldowns.get(other) ?? 0;
       if (cd <= 0) {
         let finalAttack = Math.floor(Math.random() * ball.damageRange) + ball.damage;
@@ -274,5 +274,149 @@ const C_FIGHTERS = {
     onDraw(ctx, ball) {
       setHPExtra(ball, `🎲 range: ${Math.round(ball.damage)}-${Math.round(ball.damage + ball.damageRange)}`);
     },
+  },
+
+  "H Spy": {
+    color: "#000000",
+    radius: 18,
+    maxHP: 99,
+    label: "H Spy",
+    description: "A ball whose max speed increases on hit. Gains speed on wall bounces. Damage is tied to speed.",
+
+    onInit(ball) {
+      ball.maxSpeedSpy = 650;
+      ball.baseDamage = 1.0;
+      ball.currentDamage = 1;
+      ball.passCount = 0;
+      ball.passCooldowns = new Map();
+      ball.smoke = [];
+      ball._lastWallContact = { x: false, y: false };
+      ball.noFriction = true;
+    },
+
+    onUpdate(ball, dt, arena, balls) {
+      // 1) Cancel global friction
+      ball.vx = ball.vx / Math.max(0.0001, FRICTION);
+      ball.vy = ball.vy / Math.max(0.0001, FRICTION);
+
+      // 2) Keep speed under current maxSpeedSpy
+      const speed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+      if (speed > ball.maxSpeedSpy) {
+        const ratio = ball.maxSpeedSpy / speed;
+        ball.vx *= ratio;
+        ball.vy *= ratio;
+      }
+
+      // 3) Detect wall bounces -> boost speed
+      const touchingLeft  = ball.x - ball.radius <= arena.x;
+      const touchingRight = ball.x + ball.radius >= arena.x + arena.w;
+      const touchingTop   = ball.y - ball.radius <= arena.y;
+      const touchingBot   = ball.y + ball.radius >= arena.y + arena.h;
+
+      const contactX = touchingLeft || touchingRight;
+      const contactY = touchingTop  || touchingBot;
+
+      if (contactX && !ball._lastWallContact.x) ball.vx *= 1.12;
+      if (contactY && !ball._lastWallContact.y) ball.vy *= 1.12;
+
+      ball._lastWallContact.x = contactX;
+      ball._lastWallContact.y = contactY;
+
+      const speedAfterBounce = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+      if (speedAfterBounce > ball.maxSpeedSpy) {
+        const r = ball.maxSpeedSpy / speedAfterBounce;
+        ball.vx *= r;
+        ball.vy *= r;
+      }
+
+      // 4) Small auto-acceleration
+      const s = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+      if (s > 2 && s < ball.maxSpeedSpy) {
+        ball.vx *= 1.02;
+        ball.vy *= 1.02;
+        const s2 = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+        if (s2 > ball.maxSpeedSpy) {
+          const rr = ball.maxSpeedSpy / s2;
+          ball.vx *= rr;
+          ball.vy *= rr;
+        }
+      }
+
+      // 5) Decrement cooldowns
+      for (const [target, cd] of ball.passCooldowns) {
+        if (cd > 0) ball.passCooldowns.set(target, cd - dt);
+      }
+
+      // 6) Decay smoke particles
+      for (let i = ball.smoke.length - 1; i >= 0; i--) {
+        const p = ball.smoke[i];
+        p.life -= dt;
+        p.alpha = Math.max(0, p.life / p.ttl);
+        p.y -= 12 * dt * (1 + (1 - p.alpha));
+        p.r *= 0.995;
+        if (p.life <= 0) ball.smoke.splice(i, 1);
+      }
+    },
+
+    onBallCollide(ball, other) {
+      if (ballCheck(ball, other)) return;
+
+      const cd = ball.passCooldowns.get(other) ?? 0;
+      if (cd > 0) return; // still on cooldown, do nothing
+
+      const currentSpeed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
+      const speedFactor = currentSpeed / 400;
+      const damage = Math.max(0.5, ball.baseDamage + currentSpeed * 0.002);
+      ball.currentDamage = damage;
+
+      other.hp = Math.max(0, other.hp - damage);
+      spawnText(other.x, other.y - 26, `-${Math.round(damage * 10) / 10}`, "#ffffff");
+
+      ball.smoke.push({
+        x: other.x,
+        y: other.y,
+        r: Math.min(14, 6 + speedFactor * 18),
+        life: 0.6,
+        ttl: 0.6,
+        alpha: 0.9
+      });
+
+      ball.passCount++;
+      ball.maxSpeedSpy += 48;
+      ball.passCooldowns.set(other, 0.25);
+    },
+
+    onDraw(ctx, ball) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#000000";
+      ctx.fill();
+
+      ctx.strokeStyle = "rgba(255,255,255,0.04)";
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fill();
+      ctx.restore();
+
+      for (const p of ball.smoke) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha * 0.9;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(p.x, p.y, p.r * 0.2, p.x, p.y, p.r);
+        g.addColorStop(0, "rgba(40,40,40,0.7)");
+        g.addColorStop(1, "rgba(0,0,0,0.07)");
+        ctx.fillStyle = g;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      setHPExtra(ball, `⚫ max speed: ${ball.maxSpeedSpy} damage: ${ball.currentDamage.toFixed(1)}`, "#ffffff");
+    }
   },
 };

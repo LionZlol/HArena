@@ -85,12 +85,12 @@ const O_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Bucket",
-    description: "A ball with a bucket. Enemies running into puddles that it leaves increases size and hits before puddle disappears.",
+    description: "A ball with a bucket. Enemies running into puddles that it leaves increases hits before puddle disappears and size.",
   
     onInit(ball) {
       ball.angle = 0;
       ball.puddleTimer = 0;
-      ball.puddleSize = 12;
+      ball.puddleSize = 14;
       ball.puddleMaxHits = 1;
       ball.puddles = []; // active puddles in arena
     },
@@ -137,12 +137,12 @@ const O_FIGHTERS = {
               spawnText(other.x, other.y - 26, `-0.5`, puddle.color);
   
               puddle.hitsLeft--;
-              puddle.hitCooldowns.set(other, 0.64); // 640 ms cooldown per target per puddle
+              puddle.hitCooldowns.set(other, 0.4); // 400 ms cooldown per target per puddle
   
               if (puddle.hitsLeft <= 0) {
                 ball.puddles.splice(i, 1);
                 // Increase future puddle size and hits on damage
-                ball.puddleSize += 1.4;
+                ball.puddleSize += 1.5;
                 ball.puddleMaxHits += 0.3;
               }
               break; // only hit one opponent per update cycle per puddle
@@ -211,7 +211,7 @@ const O_FIGHTERS = {
     
       ctx.restore();
     
-      setHPExtra(ball, `🪣 puddle size: ${ball.puddleSize} hits: ${Math.round(ball.puddleMaxHits)}`);
+      setHPExtra(ball, `🪣 puddle size: ${Math.round(ball.puddleSize)})} hits: ${Math.round(ball.puddleMaxHits)}`);
     }
   },
 
@@ -452,6 +452,8 @@ const O_FIGHTERS = {
       setHPExtra(ball, `💣 dmg: ${ball.damage.toFixed(1)}  radius: ${ball.explodeRadius}`);
     }
   },
+
+  
 
   "Filler Fighter": {
     color: "#888",
