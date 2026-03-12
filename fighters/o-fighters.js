@@ -453,13 +453,13 @@ const O_FIGHTERS = {
     }
   },
 
-  
+
 
   "Filler Fighter": {
     color: "#888",
     radius: 22,
     maxHP: 99,
     label: "Filler Fighter",
-    description: "A fighter with no abilities."
+    description: "A blank fighter with no abilities."
   }
 };

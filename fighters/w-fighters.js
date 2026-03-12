@@ -253,7 +253,7 @@ const W_FIGHTERS = {
           stunBall(other);
           spawnText(other.x, other.y - 28, `-${Math.round(ball.damage)}`, "#4af0ff");
           ball.damage += 0.6;
-          ball.spearLength += 12;
+          ball.spearLength += 10;
           ball.spearCooldowns.set(other, 0.38);
         }
       }
