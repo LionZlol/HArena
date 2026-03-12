@@ -814,8 +814,8 @@ const W_FIGHTERS = {
             stunBall(other);
             spawnText(other.x, other.y - 26, `-${ball.damage}`, "#ffffff");
             
-            // Multiply interval by 0.82 (Increase fire rate)
-            ball.shootInterval *= 0.82;
+            // Multiply interval by 0.84 (Increase fire rate)
+            ball.shootInterval *= 0.84;
             
             arrow.active = false;
             ball.arrows.splice(i, 1);

@@ -142,8 +142,8 @@ const O_FIGHTERS = {
               if (puddle.hitsLeft <= 0) {
                 ball.puddles.splice(i, 1);
                 // Increase future puddle size and hits on damage
-                ball.puddleSize += 1;
-                ball.puddleMaxHits += 0.25;
+                ball.puddleSize += 1.4;
+                ball.puddleMaxHits += 0.3;
               }
               break; // only hit one opponent per update cycle per puddle
             }
@@ -342,8 +342,8 @@ const O_FIGHTERS = {
       ball.mineTimer = 0;
       ball.explodeTimer = 0;
       ball.mRadius = 14;       // visual size of the bomb
-      ball.explodeRadius = 40; // explosion hitbox radius
-      ball.damage = 3;
+      ball.explodeRadius = 34; // explosion hitbox radius
+      ball.damage = 1;
       ball.hitCooldowns = new Map();
     },
 
@@ -392,7 +392,7 @@ const O_FIGHTERS = {
 
             // Scale up on hit
             ball.damage += 1;
-            ball.explodeRadius += 5;
+            ball.explodeRadius += 4;
           }
         }
 
