@@ -63,7 +63,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "Controllable",
-    description: "A sword that follows your cursor. Click to dash! Damage increases with each hit.",
+    description: "A ball with a sword that points to your cursor. Click to dash.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -137,7 +137,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Sword",
-    description: "Its sword hits stack: each new hit deals +1 more damage.",
+    description: "A ball with a sword. Each hit increases its damage.",
 
     onInit(ball) {
       ball.angle = 0; // current rotation (radians)
@@ -220,7 +220,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Spear",
-    description: "Spear grows longer and does more damage with every stab.",
+    description: "A ball with a spear. Each hit increases its damage and length.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -300,7 +300,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Dagger",
-    description: "Each hit makes the dagger spin faster. It never slows down.",
+    description: "A ball with a dagger. Each hit increases its damage and attack speed.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -386,7 +386,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Bat",
-    description: "Every hit increases its swing damage and total swing rotation, along with the interval between swings.",
+    description: "A ball with a bat. Each hit increases its damage, swing interval, and swing rotation.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -497,7 +497,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Scepter",
-    description: "Its sword hits stack: each new hit deals +1 more damage and heals itself.",
+    description: "A ball with a scepter. Each hit increases its damage and life steal.",
 
     onInit(ball) {
       ball.angle = 0; // current rotation (radians)
@@ -584,7 +584,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Mace",
-    description: "A heavy mace. Each hit makes the head and handle thicker and increases damage.",
+    description: "A ball with a mace. Each hit increases its damage and mace head size.",
 
     onInit(ball) {
       ball.angle = 0;           // rotation for the mace
@@ -673,7 +673,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Torch",
-    description: "Lights enemies on fire. Each hit increases fire DPS stacked on the target.",
+    description: "A ball with a torch. Each hit increases its DPS dealt to the enemy.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -766,7 +766,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Bow",
-    description: "Shoots arrows that increase fire rate on hit. Has a wooden bow with a white string.",
+    description: "A ball with a bow. Shoots arrow projectiles. Each hit decreases the interval.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -899,7 +899,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Axe",
-    description: "Has an axe. Each hit increases the chance of a critical hit as well as the damage.",
+    description: "A ball with an axe. Each hit increases its crit chance and crit damage.",
 
     onInit(ball) {
       ball.angle = 0;              // axe angle for rotation
@@ -995,7 +995,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Hammer",
-    description: "Wields a heavy hammer. Each hit increases the stun duration of the enemy.",
+    description: "A ball with a hammer. Each hit increases its damage and stun duration.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -1107,7 +1107,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Shuriken",
-    description: "Throws shurikens that bounce off walls. Each hit increases bounce count.",
+    description: "A ball that throws shurikens. Each hit increases the number of bounces the shurikens can do.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -1218,7 +1218,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Pistol",
-    description: "Fires bullets in a straight line. Each hit increases bullet size and damage.",
+    description: "A ball with a gun. Shoots bullets that increase in size and damage upon a hit.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -1331,7 +1331,7 @@ const W_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Katana",
-    description: "Charges damage every second up to a growing cap. On hit, unleashes it all then resets.",
+    description: "A ball that charges damage over time with a katana. Each hit resets the charge but increases max damage.",
 
     onInit(ball) {
       ball.damage = 1;

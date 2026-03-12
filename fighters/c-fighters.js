@@ -5,7 +5,7 @@ const C_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Masochist",
-    description: "Loses HP on wall bounces. Wall bounces power up attacks.",
+    description: "A ball that loses HP on wall bounces but gains damage upon doing so.",
 
     onInit(ball) {
       ball.damage = 1;
@@ -54,7 +54,7 @@ const C_FIGHTERS = {
     radius: 40,
     maxHP: 199,
     label: "H Tank",
-    description: "High health and low damage. Has no weapon and has slow scaling. Opposite of the H Rogue.",
+    description: "A ball that has lots of HP. Has slow scaling.",
 
     onInit(ball) {
       ball.damage = 1;
@@ -98,7 +98,7 @@ const C_FIGHTERS = {
     radius: 14,
     maxHP: 49,
     label: "H Rogue",
-    description: "Low health and high damage. Has no weapon, making scaling easy. Opposite of the H Tank.",
+    description: "A ball with low HP. Has fast scaling.",
 
     onInit(ball) {
       ball.damage = 1;
@@ -142,7 +142,7 @@ const C_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Assassin",
-    description: "Chance to insta-kill opponent grows each wall bounce/hit. Hits otherwise do nothing.",
+    description: "A ball that can insta-kill enemies. The chance to do so increases with wall bounces and hits",
 
     onInit(ball) {
       ball.instaKillChance = 0; // Starting chance (percentage, e.g. 0.5 means 0.5%)
@@ -198,7 +198,7 @@ const C_FIGHTERS = {
     radius: 20,
     maxHP: 39,
     label: "H Scout",
-    description: "Damage multiplies each hit for huge output. Has incredibly low HP.",
+    description: "A ball with incredibly low HP. Its damage starts very low but scales exponentially.",
 
     onInit(ball) {
       ball.damage = 0.1;
@@ -243,7 +243,7 @@ const C_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Gambler",
-    description: "Does random damage. The range of damage it can do increases with every hit.",
+    description: "A ball that does random damage. The max damage it can do increases with every hit.",
     onInit(ball) {
       ball.damageRange = 1;
       ball.damage = 1;

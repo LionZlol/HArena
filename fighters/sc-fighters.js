@@ -5,7 +5,7 @@ const SC_FIGHTERS = {
     radius: 28,
     maxHP: 199,
     label: "SH Masochist",
-    description: "Super version of H Masochist. Doesn't lose HP. Wall bounces power up attacks.",
+    description: C_FIGHTERS["H Masochist"].description + " (Super version of H Masochist.)",
 
     onInit(ball) {
       ball.damage = 1;
@@ -53,7 +53,7 @@ const SC_FIGHTERS = {
     radius: 64,
     maxHP: 499,
     label: "SH Tank",
-    description: "Super version of H Tank. Colossal health and low damage. Has no weapon and has slow scaling. Opposite of the SH Rogue.",
+    description: C_FIGHTERS["H Tank"].description + " (Super version of H Tank.)",
 
     onInit(ball) {
       ball.damage = 1;

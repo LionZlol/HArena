@@ -5,7 +5,7 @@ const O_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Lazer",
-    description: "Lasers multiply every 10 hits. Slow, but they fill the whole arena.",
+    description: "A ball that emits lasers. The amount of lazers it emits increases every 10 hits.",
 
     onInit(ball) {
       ball.angle = 0;
@@ -85,7 +85,7 @@ const O_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "H Bucket",
-    description: "Rotates a bucket and leaves blue puddles that grow with every hit.",
+    description: "A ball with a bucket. It leaves blue puddles. Enemies running into puddles increases future size and hits before disappearing.",
   
     onInit(ball) {
       ball.angle = 0;
@@ -220,7 +220,7 @@ const O_FIGHTERS = {
     radius:      22,
     maxHP:       99,
     label:       "H Frisbee",
-    description: "Throws a bouncing frisbee. Speed and damage scale up on each hit, but it can come back to you if you collide with it.",
+    description: "A ball that throws a frisbee. Every hit increases damage and speed.",
 
     onInit(ball) {
       ball.frisbeeActive = false;
@@ -332,6 +332,6 @@ const O_FIGHTERS = {
     radius: 22,
     maxHP: 99,
     label: "Filler Fighter",
-    description: "A fighter with no abilities. All it does is get hit. Good for testing or just pure curiosity."
+    description: "A fighter with no abilities."
   }
 };

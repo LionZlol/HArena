@@ -5,7 +5,7 @@ const SW_FIGHTERS = {
     radius: 28,
     maxHP: 199,
     label: "SH Sword",
-    description: "Super version of H Sword. Its sword hits stack: each new hit deals +2 more damage.",
+    description: W_FIGHTERS["H Sword"].description + " (Super version of H Sword.)",
 
     onInit(ball) {
       ball.angle = 0; // current rotation (radians)
@@ -88,7 +88,7 @@ const SW_FIGHTERS = {
     radius: 28,
     maxHP: 199,
     label: "SH Spear",
-    description: "Super version of H Spear. Spear grows longer and does more damage with every stab.",
+    description: W_FIGHTERS["H Spear"].description + " (Super version of H Spear.)",
 
     onInit(ball) {
       ball.angle = 0;
@@ -168,7 +168,7 @@ const SW_FIGHTERS = {
     radius: 28,
     maxHP: 199,
     label: "SH Dagger",
-    description: "Super version of H Dagger. Each hit makes the dagger spin faster. It has no cooldown.",
+    description: W_FIGHTERS["H Dagger"].description + " (Super version of H Dagger.)",
 
     onInit(ball) {
       ball.angle = 0;
@@ -243,7 +243,7 @@ const SW_FIGHTERS = {
     radius: 28,
     maxHP: 199,
     label: "SH Bat",
-    description: "Super version of H Bat. Every hit increases its swing damage and total swing rotation, along with the interval between swings.",
+    description: W_FIGHTERS["H Bat"].description + " (Super version of H Bat.)",
 
     onInit(ball) {
       ball.angle = 0;
